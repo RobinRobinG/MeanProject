@@ -1,0 +1,36 @@
+<nav class="navbar navbar-dark bg-mint mb-5">
+  <a class="navbar-brand" href="/">Angular Auth App</a>
+  <div class="navbar-expand mr-auto">
+    <div class="navbar-nav">
+      
+    </div>
+  </div>
+  <div class="navbar-expand ml-auto navbar-nav">
+    <div class="navbar-nav">
+      <a *ngIf="!authService.loggedIn()"
+      class="nav-item nav-link"
+      [routerLink] = "['login']"
+      routerLinkActive="active-link"
+      [routerLinkActiveOptions]="{exact: true}">Login</a>
+      <a *ngIf="!authService.loggedIn()" 
+      class="!nav-item nav-link" 
+      [routerLink] = "['register']" 
+      routerLinkActive="active-link" 
+      [routerLinkActiveOptions]="{exact: true}">Register</a>
+      <a *ngIf="authService.loggedIn()" 
+      class="nav-item nav-link" 
+      [routerLink] = "['profile']" 
+      routerLinkActive="active-link" 
+      [routerLinkActiveOptions]="{exact: true}">Profile</a>
+      <a *ngIf="authService.loggedIn()" 
+      class="nav-item nav-link" 
+      [routerLink] = "['dashboard']" 
+      routerLinkActive="active-link" 
+      [routerLinkActiveOptions]="{exact: true}">Dashboard</a>
+      <a *ngIf="authService.loggedIn()" 
+      class="nav-item nav-link" 
+      (click) = "onLogoutClick()" 
+      href="#">Logout</a>
+    </div>
+  </div>
+</nav>
