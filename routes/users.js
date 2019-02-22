@@ -5,13 +5,12 @@ const jwt = require('jsonwebtoken');
 const config = require('../config/database');
 const User = require('../models/user');
 
-
 //Register
 router.post('/register', (req, res, next) => {
   let newUser = new User({
-    name: req.body.name,
+    firstname: req.body.firstname,
+    lastname: req.body.lastname,
     email: req.body.email,
-    username: req.body.username,
     password: req.body.password
   });
 
@@ -26,10 +25,10 @@ router.post('/register', (req, res, next) => {
 
 //Authenticate
 router.post('/authenticate', (req, res, next) => {
-  const username = req.body.username;
+  const email = req.body.email;
   const password = req.body.password;
 
-  User.getUserByUsername(username, (err, user) => {
+  User.getUserByEmail(email, (err, user) => {
     if(err) throw err;
     if(!user) {
       return res.json({success: false, msg: 'User Not Found!'});
@@ -46,8 +45,8 @@ router.post('/authenticate', (req, res, next) => {
           token: 'JWT ' + token,
           user: {
             id: user._id,
-            name: user.name,
-            username: user.username,
+            firstname: user.firstname,
+            lastname: user.lastname,
             email: user.email
           }
         });
@@ -62,7 +61,6 @@ router.post('/authenticate', (req, res, next) => {
 router.get('/profile', passport.authenticate('jwt', {session:false}), (req, res, next) => {
   res.json({user: req.user});
 });
-
 
 
 module.exports = router;

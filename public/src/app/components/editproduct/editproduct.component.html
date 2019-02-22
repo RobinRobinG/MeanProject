@@ -1,0 +1,42 @@
+<div>
+  <br>
+  <mat-card>
+    <section class='mat-typography'>
+      <h2>
+        Update A Product
+      </h2>
+    </section>
+    <mat-divider></mat-divider>
+    <br>
+    <form [formGroup]='updateForm' (ngSubmit)='updateProduct()' class='edit-form'>
+      <mat-form-field class="field-full-width">
+        <input matInput placeholder='Name' type='text' formControlName='name'>
+      </mat-form-field>
+
+      <mat-form-field class="field-full-width">
+        <input matInput placeholder='category' formControlName='category'>
+      </mat-form-field>
+
+      <mat-form-field class="field-full-width">
+        <input matInput placeholder='description' formControlName='description'>
+      </mat-form-field>
+
+      <mat-form-field class="field-full-width">
+        <input matInput placeholder='price' formControlName='price'>
+      </mat-form-field>
+
+      <mat-form-field class="field-full-width">
+        <input matInput placeholder='rating' formControlName='rating'>
+      </mat-form-field>
+
+      <mat-form-field class="field-full-width">
+        <input matInput placeholder='qty' formControlName='qty'>
+      </mat-form-field>
+      <mat-divider></mat-divider>
+      <br>
+      <br>
+      <button mat-raised-button color='accent' routerLink='/list'>Back</button>&nbsp;
+      <button type='submit' [disabled]='updateForm.pristine || updateForm.invalid' mat-raised-button color="primary">Save</button>
+    </form>
+  </mat-card>
+</div>

@@ -1,3 +1,10 @@
-<p>
-  dashboard works!
-</p>
+<mat-grid-list cols="4" rowHeight="1:1.5" gutterSize='10'>
+    <mat-grid-tile
+        *ngFor="let tile of imagesData"
+        [style.background]="tile.color">
+        <img src="{{tile.urls.small}}" alt="img" width=auto height='100%'>
+        <mat-grid-tile-footer>
+            <button mat-button (click)="openDialog()"><mat-icon>favorite</mat-icon> CREATE YOUR YOGA MAT</button>
+        </mat-grid-tile-footer>
+    </mat-grid-tile>
+  </mat-grid-list>

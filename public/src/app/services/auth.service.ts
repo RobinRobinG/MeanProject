@@ -13,21 +13,21 @@ export class AuthService {
   constructor(
     private http: HttpClient,
     public jwtHelper: JwtHelperService
-    ) { }
+  ) { }
 
   registerUser(user) {
     const headers = new HttpHeaders({'Content-Type': 'application/json'});
-    return this.http.post('http://localhost:3000/users/register', user, {headers});
+    return this.http.post(`/users/register`, user, {headers});
   }
   authenticateUser(user) {
     const headers = new HttpHeaders({'Content-Type': 'application/json'});
-    return this.http.post('http://localhost:3000/users/authenticate', user, {headers});
+    return this.http.post(`/users/authenticate`, user, {headers});
   }
 
   getProfile() {
     const headers = new HttpHeaders({'Content-Type': 'application/json', Authorization: this.authToken});
     this.loadToken();
-    return this.http.get('http://localhost:3000/users/profile', {headers});
+    return this.http.get(`/users/profile`, {headers});
   }
 
   storeUserData(token, user) {

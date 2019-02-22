@@ -9,9 +9,13 @@ const config = require('./config/database');
 //connect to database
 mongoose.connect(config.database);
 
+//on first connection
+mongoose.connection.once('open', () => {
+  console.log('MongoDB database connection established successfully!');
+});
 //on connection
 mongoose.connection.on('connected', () => {
-  console.log('connected to database ' + config.database);
+  console.log('Connected to database ' + config.database);
 });
 //on error
 mongoose.connection.on('error', (err) => {
@@ -20,6 +24,7 @@ mongoose.connection.on('error', (err) => {
 
 const app = express();
 const users = require('./routes/users');
+const products = require('./routes/products');
 
 //Port Number
 const port = 3000;
@@ -41,6 +46,7 @@ require('./config/passport')(passport);
 
 
 app.use('/users', users);
+app.use('/products', products);
 
 //index route
 app.get('/', (req, res) => {
@@ -53,5 +59,5 @@ app.get('*', (req, res) => {
 
 //start server
 app.listen(port, () =>{
-  console.log("server started on port "+port);
+  console.log("Express server running on port "+port);
 });

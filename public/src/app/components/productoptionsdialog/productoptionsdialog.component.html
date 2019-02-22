@@ -1,0 +1,49 @@
+<h1 mat-dialog-title class="title">
+  Hi, User
+</h1>
+<mat-dialog-content>
+  <form>
+    <mat-grid-list cols="2">
+      <mat-grid-tile>
+        <img mat-card-image src="assets/mat.png" alt="Yoga Mat Image" height="100%" width=auto>
+      </mat-grid-tile>
+      <mat-grid-tile>
+        <div class="option-form">
+          <mat-form-field class="field-full-width">
+              <mat-label>Choose a size</mat-label>
+              <mat-select [(ngModel)]="size" placeholder="Source of contact">
+                <mat-option value="68">Small 68 in</mat-option>
+                <mat-option value="71">Standard 71 in</mat-option>
+                <mat-option value="68">Extra Long 85 in</mat-option>
+              </mat-select>
+            </mat-form-field>
+
+          <mat-form-field class="field-full-width">
+              <mat-label>Type</mat-label>
+              <mat-select [(ngModel)]="type" placeholder="Source of contact">
+                <mat-option value="68">Small 68 in</mat-option>
+                <mat-option value="71">Standard 71 in</mat-option>
+                <mat-option value="68">Extra Long 85 in</mat-option>
+              </mat-select>
+          </mat-form-field>
+
+          <mat-form-field class="field-full-width">
+              <mat-label>Color</mat-label>
+              <mat-select [(ngModel)]="Color" placeholder="Source of contact">
+                <mat-option value="68">Red</mat-option>
+                <mat-option value="71">Green</mat-option>
+                <mat-option value="71">Blue</mat-option>
+                <mat-option value="68">Black</mat-option>
+              </mat-select>
+          </mat-form-field>
+
+        </div>
+
+      </mat-grid-tile>
+    </mat-grid-list>
+  </form>
+</mat-dialog-content>
+<mat-dialog-actions>
+    <button mat-raised-button color="accent" (click)="close()">Cancel</button>
+    <button mat-raised-button color="primary" (click)="save()">Save</button>
+</mat-dialog-actions>

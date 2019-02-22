@@ -1,3 +1,16 @@
-.fa-heart {
-  color: hotpink;
+.footer {
+  display: block;
+  text-align: center;
+  padding-top: 15px;
+  margin-top: 40px;
+}
+.footer-text {
+  font-size: 1em;
+}
+.heart {
+  color: pink;
+}
+:focus {
+  outline:none;
+  border: 0;
 }

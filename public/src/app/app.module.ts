@@ -1,6 +1,8 @@
 import { BrowserModule } from '@angular/platform-browser';
 import { NgModule } from '@angular/core';
 import { FormsModule } from '@angular/forms';
+import { HttpClientModule } from '@angular/common/http';
+import { ReactiveFormsModule } from '@angular/forms';
 
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
@@ -11,15 +13,23 @@ import { DashboardComponent } from './components/dashboard/dashboard.component';
 import { ProfileComponent } from './components/profile/profile.component';
 import { RegisterComponent } from './components/register/register.component';
 import { FooterComponent } from './components//footer/footer.component';
-
+import { ProductsListComponent } from './components/productslist/productslist.component';
+import { CreateProductComponent } from './components/createproduct/createproduct.component';
+import { EditProductComponent } from './components/editproduct/editproduct.component';
+import { ProductoptionsdialogComponent } from './components/productoptionsdialog/productoptionsdialog.component';
 
 import { ValidateService } from './services/validate.service';
 import { AuthService } from './services/auth.service';
+import { AuthGuard } from './guards/auth-guard.service';
+import { ProductService } from './services/product.service';
+import { ImageService } from './services/image.service';
+
 import { NgFlashMessagesModule } from 'ng-flash-messages';
-import { HttpClientModule } from '@angular/common/http';
 import { JwtModule } from '@auth0/angular-jwt';
-import {AuthGuard} from './guards/auth-guard.service';
+
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
+// tslint:disable-next-line:max-line-length
+import { MatMenuModule, MatToolbarModule, MatFormFieldModule, MatInputModule, MatOptionModule, MatSelectModule, MatIconModule, MatButtonModule, MatCardModule, MatTableModule, MatDividerModule, MatSnackBarModule, MatGridListModule, MatDialogModule, MatRadioModule } from '@angular/material';
 
 export function getToken(): string {
   return localStorage.getItem('token');
@@ -33,7 +43,11 @@ export function getToken(): string {
     DashboardComponent,
     ProfileComponent,
     RegisterComponent,
-    FooterComponent
+    FooterComponent,
+    ProductsListComponent,
+    CreateProductComponent,
+    EditProductComponent,
+    ProductoptionsdialogComponent
   ],
   imports: [
     BrowserModule,
@@ -46,9 +60,26 @@ export function getToken(): string {
     }),
     FormsModule,
     NgFlashMessagesModule.forRoot(),
-    BrowserAnimationsModule
+    BrowserAnimationsModule,
+    ReactiveFormsModule,
+    MatMenuModule,
+    MatToolbarModule,
+    MatFormFieldModule,
+    MatInputModule,
+    MatOptionModule,
+    MatSelectModule,
+    MatIconModule,
+    MatButtonModule,
+    MatCardModule,
+    MatTableModule,
+    MatDividerModule,
+    MatSnackBarModule,
+    MatRadioModule,
+    MatGridListModule,
+    MatDialogModule,
   ],
-  providers: [ValidateService, JwtModule, AuthService, AuthGuard],
+  entryComponents : [ProductoptionsdialogComponent],
+  providers: [ValidateService, JwtModule, AuthService, AuthGuard, ProductService, ImageService],
   bootstrap: [AppComponent]
 })
 export class AppModule { }

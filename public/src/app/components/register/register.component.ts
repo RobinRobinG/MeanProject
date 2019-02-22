@@ -3,6 +3,7 @@ import { ValidateService } from '../../services/validate.service';
 import { AuthService } from '../../services/auth.service';
 import { NgFlashMessageService } from 'ng-flash-messages';
 import { Router } from '@angular/router';
+import { FormGroup, FormBuilder, Validators } from '@angular/forms';
 
 @Component({
   selector: 'app-register',
@@ -10,29 +11,27 @@ import { Router } from '@angular/router';
   styleUrls: ['./register.component.css']
 })
 export class RegisterComponent implements OnInit {
-  name: string;
-  username: string;
-  email: string;
-  password: string;
-
+  registerForm: FormGroup;
 
   constructor(
     private validateService: ValidateService,
     private flashMessage: NgFlashMessageService,
     private authService: AuthService,
-    private router: Router
-    ) { }
+    private router: Router,
+    private fb: FormBuilder,
+    ) {
+      this.registerForm = this.fb.group({
+        firstname: '',
+        lastname: '',
+        email: '',
+        password: '',
+      });
+    }
 
   ngOnInit() {
   }
   onRegisterSubmit() {
-    const newuser = {
-      name: this.name,
-      email: this.email,
-      username: this.username,
-      password: this.password
-    };
-    // Required fileds
+    const newuser = this.registerForm.value;
     if (!this.validateService.validateRegister(newuser)) {
       this.flashMessage.showFlashMessage({
         messages: ['Please fill in all the fields!'],
@@ -42,7 +41,6 @@ export class RegisterComponent implements OnInit {
       });
       return false;
     }
-    // Validate email
     if (!this.validateService.validateEmail(newuser.email)) {
       this.flashMessage.showFlashMessage({
         messages: ['Please use a valid email!'],
@@ -52,7 +50,6 @@ export class RegisterComponent implements OnInit {
       });
       return false;
     }
-      // register user
     this.authService.registerUser(newuser).subscribe((data: any) => {
         if (data.success) {
           this.flashMessage.showFlashMessage({

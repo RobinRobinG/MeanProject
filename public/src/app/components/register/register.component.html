@@ -1,51 +1,29 @@
-<h2 class="page-header">Register</h2>
-<form (ngSubmit)="onRegisterSubmit()">
-  <div class="form-group">
-    <label for="name">Name:</label>
-    <input
-      type="text"
-      class="form-control"
-      placeholder="name"
-      minlength="3"
-      name="name"
-      [(ngModel)]="name"
-      required>
+<div>
+    <br>
+    <mat-card>
+      <section class='mat-typography'>
+        <h2>Create Account</h2>
+      </section>
+      <mat-divider></mat-divider>
+      <br>
+      <form [formGroup]='registerForm' (ngSubmit)="onRegisterSubmit()" class='register-form'>
+        <mat-form-field class="field-full-width">
+            <input matInput placeholder='First Name' formControlName='firstname' type="text">
+        </mat-form-field>
+        <mat-form-field class="field-full-width">
+          <input matInput placeholder='Last Name' formControlName='lastname' type="text">
+        </mat-form-field>
+        <mat-form-field class="field-full-width">
+            <input matInput placeholder='Email' formControlName='email' type="text">
+          </mat-form-field>
+        <mat-form-field class="field-full-width">
+          <input matInput placeholder='password' formControlName='password' type="password">
+        </mat-form-field>
+        <mat-divider></mat-divider>
+        <br>
+        <br>
+        <button mat-raised-button color='accent' routerLink='/list'>Back</button>&nbsp;
+        <button type='submit' [disabled]='registerForm.pristine || registerForm.invalid' mat-raised-button color="primary">Create</button>
+      </form>
+    </mat-card>
   </div>
-  <div class="form-group">
-    <label for="username">Username:</label>
-    <input
-      type="text"
-      class="form-control"
-      placeholder="username"
-      minlength="3"
-      name="username"
-      [(ngModel)]="username"
-      required>
-  </div>
-  <div class="form-group">
-    <label for="email">Email:</label>
-    <input
-      type="email"
-      class="form-control"
-      placeholder="email"
-      minlength="3"
-      name="email"
-      [(ngModel)]="email"
-      required>
-  </div>
-  <div class="form-group">
-    <label for="password">Password:</label>
-    <input
-      type="password"
-      class="form-control"
-      placeholder="password"
-      minlength="3"
-      name="password"
-      [(ngModel)]="password"
-      required>
-  </div>
-    <input
-      type="submit" 
-      class="btn btn-success"
-      value = "Submit">
-</form>

@@ -2,6 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { AuthService } from '../../services/auth.service';
 import { NgFlashMessageService } from 'ng-flash-messages';
 import { Router } from '@angular/router';
+import { FormGroup, FormBuilder, Validators } from '@angular/forms';
 
 @Component({
   selector: 'app-login',
@@ -9,23 +10,25 @@ import { Router } from '@angular/router';
   styleUrls: ['./login.component.css']
 })
 export class LoginComponent implements OnInit {
-  username: string;
-  password: string;
+  loginForm: FormGroup;
 
   constructor(
     private authService: AuthService,
     private router: Router,
-    private flashMessage: NgFlashMessageService
-    ) { }
+    private flashMessage: NgFlashMessageService,
+    private fb: FormBuilder,
+    ) {
+      this.loginForm = this.fb.group({
+        email: '',
+        password: '',
+      });
+    }
 
   ngOnInit() {
   }
 
   onLoginSubmit() {
-    const user = {
-      username: this.username,
-      password: this.password
-    };
+    const user = this.loginForm.value;
     this.authService.authenticateUser(user).subscribe((data: any) => {
       if (data.success) {
         this.authService.storeUserData(data.token, data.user);

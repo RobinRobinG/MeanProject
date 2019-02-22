@@ -1,30 +1,23 @@
-<h2 class="page-header">Login</h2>
-<form (ngSubmit)="onLoginSubmit()">
-
-  <div class="form-group">
-    <label for="username">Username:</label>
-    <input
-      type="text"
-      class="form-control"
-      placeholder="username"
-      minlength="3"
-      name="username"
-      [(ngModel)]="username"
-      required>
+<div>
+    <br>
+    <mat-card>
+      <section class='mat-typography'>
+        <h2>Login</h2>
+      </section>
+      <mat-divider></mat-divider>
+      <br>
+      <form [formGroup]='loginForm' (ngSubmit)="onLoginSubmit()" class='login-form'>
+        <mat-form-field class="field-full-width">
+          <input matInput placeholder='Email' formControlName='email' type="text">
+        </mat-form-field>
+        <mat-form-field class="field-full-width">
+          <input matInput placeholder='password' formControlName='password' type="password">
+        </mat-form-field>
+        <mat-divider></mat-divider>
+        <br>
+        <br>
+        <button mat-raised-button color='accent' routerLink='/list'>Back</button>&nbsp;
+        <button type='submit' [disabled]='loginForm.pristine || loginForm.invalid' mat-raised-button color="primary">Sign In</button>
+      </form>
+    </mat-card>
   </div>
-  <div class="form-group">
-    <label for="password">Password:</label>
-    <input
-      type="password"
-      class="form-control"
-      placeholder="password"
-      minlength="3"
-      name="password"
-      [(ngModel)]="password"
-      required>
-  </div>
-    <input
-      type="submit" 
-      class="btn btn-primary"
-      value = "Submit">
-</form>

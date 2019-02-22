@@ -1,36 +1,28 @@
-<nav class="navbar navbar-dark bg-mint mb-5">
-  <a class="navbar-brand" href="/">Angular Auth App</a>
-  <div class="navbar-expand mr-auto">
-    <div class="navbar-nav">
-      
-    </div>
-  </div>
-  <div class="navbar-expand ml-auto navbar-nav">
-    <div class="navbar-nav">
-      <a *ngIf="!authService.loggedIn()"
-      class="nav-item nav-link"
-      [routerLink] = "['login']"
-      routerLinkActive="active-link"
-      [routerLinkActiveOptions]="{exact: true}">Login</a>
-      <a *ngIf="!authService.loggedIn()" 
-      class="!nav-item nav-link" 
-      [routerLink] = "['register']" 
-      routerLinkActive="active-link" 
-      [routerLinkActiveOptions]="{exact: true}">Register</a>
-      <a *ngIf="authService.loggedIn()" 
-      class="nav-item nav-link" 
-      [routerLink] = "['profile']" 
-      routerLinkActive="active-link" 
-      [routerLinkActiveOptions]="{exact: true}">Profile</a>
-      <a *ngIf="authService.loggedIn()" 
-      class="nav-item nav-link" 
-      [routerLink] = "['dashboard']" 
-      routerLinkActive="active-link" 
-      [routerLinkActiveOptions]="{exact: true}">Dashboard</a>
-      <a *ngIf="authService.loggedIn()" 
-      class="nav-item nav-link" 
-      (click) = "onLogoutClick()" 
-      href="#">Logout</a>
-    </div>
-  </div>
-</nav>
+<mat-toolbar class='nav-bar' color="primary">
+  <span>
+    <button mat-button color='basic' routerLink = '/'>
+      <h1>🍓 YOGA </h1>
+    </button>
+  </span>
+  <span class="fill-space"></span>
+  <span>
+    <button mat-stroked-button color='basic' class='space-right' *ngIf='!authService.loggedIn()' routerLink='login'>Login</button>
+    <button mat-stroked-button color='basic' *ngIf="!authService.loggedIn()" routerLink='register'>Register</button>
+  </span>
+  <span>
+    <button *ngIf='authService.loggedIn()' mat-button color='basic' class='space-right' routerLink = 'list'>
+        <mat-icon class='space-right'>list_alt</mat-icon>Products List
+    </button>
+    <button mat-button color='basic' routerLink='cart'>
+        <mat-icon class='space-right'>shopping_cart</mat-icon>My Cart
+    </button>
+    <button *ngIf='authService.loggedIn()' mat-button color='basic' [matMenuTriggerFor]='menu'>
+      <mat-icon class='space-right'>person</mat-icon>Account
+    </button>
+    <mat-menu #menu='matMenu'>
+      <button mat-menu-item routerLink = 'profile'>Profile</button>
+      <button mat-menu-item routerLink = 'dashboard'>Dashboard</button>
+      <button mat-menu-item (click) = 'onLogoutClick()'>Logout</button>
+    </mat-menu>
+  </span>
+</mat-toolbar>

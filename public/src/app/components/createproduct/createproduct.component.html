@@ -1,0 +1,42 @@
+<div>
+  <br>
+  <mat-card>
+    <section class='mat-typography'>
+      <h2>
+        Add A New Product
+      </h2>
+    </section>
+    <mat-divider></mat-divider>
+    <br>
+    <form [formGroup]='createForm' (ngSubmit)='addProduct(createForm.value)' class='create-form'>
+      <mat-form-field class="field-full-width">
+        <input matInput placeholder='Name' formControlName='name' required>
+      </mat-form-field>
+
+      <mat-form-field class="field-full-width">
+        <input matInput placeholder='category' formControlName='category' required>
+      </mat-form-field>
+
+      <mat-form-field class="field-full-width">
+        <input matInput placeholder='description' formControlName='description' required>
+      </mat-form-field>
+
+      <mat-form-field class="field-full-width">
+        <input matInput placeholder='price' formControlName='price' required>
+      </mat-form-field>
+
+      <mat-form-field class="field-full-width">
+        <input matInput placeholder='rating' formControlName='rating' required>
+      </mat-form-field>
+
+      <mat-form-field class="field-full-width">
+        <input matInput placeholder='qty' formControlName='qty' required>
+      </mat-form-field>
+      <mat-divider></mat-divider>
+      <br>
+      <br>
+      <button mat-raised-button color='accent' routerLink='/list'>Back</button>&nbsp;
+      <button type='submit' [disabled]='createForm.pristine || createForm.invalid' mat-raised-button color="primary">Save</button>
+    </form>
+  </mat-card>
+</div>

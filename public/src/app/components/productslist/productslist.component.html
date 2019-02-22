@@ -1,0 +1,54 @@
+<div>
+  <br>
+  <mat-card>
+    <span class="fill-space"></span>
+    <button mat-raised-button color='primary' routerLink='/create'>Create New Product</button>
+    <br>
+    <br>
+    <mat-divider></mat-divider>
+    <br>
+    <table mat-table [dataSource] = 'products'>
+      <ng-container matColumnDef = 'name'>
+        <th mat-header-cell *matHeaderCellDef>Name</th>
+        <th mat-cell *matCellDef='let element'>{{element.name}}</th>
+      </ng-container>
+      <ng-container matColumnDef = 'category'>
+        <th mat-header-cell *matHeaderCellDef>Catergory</th>
+        <th mat-cell *matCellDef='let element'>{{element.category}}</th>
+      </ng-container>
+      <ng-container matColumnDef = 'description'>
+        <th mat-header-cell *matHeaderCellDef>Description</th>
+        <th mat-cell *matCellDef='let element'>{{element.description}}</th>
+      </ng-container>
+      <ng-container matColumnDef = 'price'>
+        <th mat-header-cell *matHeaderCellDef>price</th>
+        <th mat-cell *matCellDef='let element'>{{element.price}}</th>
+      </ng-container>
+      <ng-container matColumnDef = 'rating'>
+        <th mat-header-cell *matHeaderCellDef>rating</th>
+        <th mat-cell *matCellDef='let element'>{{element.rating}}</th>
+      </ng-container>
+      <ng-container matColumnDef = 'qty'>
+        <th mat-header-cell *matHeaderCellDef>Qty</th>
+        <th mat-cell *matCellDef='let element'>{{element.qty}}</th>
+        </ng-container>
+        <ng-container matColumnDef = 'createdby'>
+          <th mat-header-cell *matHeaderCellDef>Createdby</th>
+          <th mat-cell *matCellDef='let element'>{{element.createdby}}</th>
+        </ng-container>
+        <ng-container matColumnDef = 'actions'>
+          <th mat-header-cell *matHeaderCellDef class='mat-column-right'>Actions</th>
+          <th mat-cell *matCellDef='let element' class='mat-column-right'>
+            <button mat-button color="primary" (click)="editProduct(element._id)">Edit</button>
+            <button mat-button (click)="openDialog()">Open dialog</button>
+            <button mat-button color="warn" (click)="deleteProduct(element._id)">Delete</button>
+          </th>
+        </ng-container>
+
+        <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
+        <tr mat-row *matRowDef="let row; columns: displayedColumns;"></tr>
+
+    </table>
+    
+  </mat-card>
+</div>
