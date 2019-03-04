@@ -1,5 +1,5 @@
 <h1 mat-dialog-title class="title">
-  Hi, User
+  Hi, {{user.firstname}}
 </h1>
 <mat-dialog-content>
   <form>
@@ -19,11 +19,11 @@
             </mat-form-field>
 
           <mat-form-field class="field-full-width">
-              <mat-label>Type</mat-label>
+              <mat-label>Choose a type of yoga mats</mat-label>
               <mat-select [(ngModel)]="type" placeholder="Source of contact">
-                <mat-option value="68">Small 68 in</mat-option>
-                <mat-option value="71">Standard 71 in</mat-option>
-                <mat-option value="68">Extra Long 85 in</mat-option>
+                <mat-option value="68">Travel Mat (1.8 pounds)</mat-option>
+                <mat-option value="71">Combo Mat (4.1 pounds)</mat-option>
+                <mat-option value="68">Infinity Mat (6 pounds)</mat-option>
               </mat-select>
           </mat-form-field>
 

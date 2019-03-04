@@ -10,10 +10,10 @@ import { Router } from '@angular/router';
 })
 export class ProfileComponent implements OnInit {
   user: object;
-
+  error: string;
   constructor(
     private authService: AuthService,
-    private router: Router
+    private router: Router,
   ) { }
 
   ngOnInit() {

@@ -3,6 +3,7 @@ import { NgModule } from '@angular/core';
 import { FormsModule } from '@angular/forms';
 import { HttpClientModule } from '@angular/common/http';
 import { ReactiveFormsModule } from '@angular/forms';
+import { FlexLayoutModule } from '@angular/flex-layout';
 
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
@@ -29,7 +30,7 @@ import { JwtModule } from '@auth0/angular-jwt';
 
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 // tslint:disable-next-line:max-line-length
-import { MatMenuModule, MatToolbarModule, MatFormFieldModule, MatInputModule, MatOptionModule, MatSelectModule, MatIconModule, MatButtonModule, MatCardModule, MatTableModule, MatDividerModule, MatSnackBarModule, MatGridListModule, MatDialogModule, MatRadioModule } from '@angular/material';
+import { MatMenuModule, MatToolbarModule, MatFormFieldModule, MatInputModule, MatOptionModule, MatSelectModule, MatIconModule, MatButtonModule, MatCardModule, MatTableModule, MatDividerModule, MatSnackBarModule, MatGridListModule, MatDialogModule, MatRadioModule, MatSidenavModule } from '@angular/material';
 
 export function getToken(): string {
   return localStorage.getItem('token');
@@ -53,6 +54,7 @@ export function getToken(): string {
     BrowserModule,
     AppRoutingModule,
     HttpClientModule,
+    FlexLayoutModule,
     JwtModule.forRoot({
       config: {
           tokenGetter: getToken
@@ -77,6 +79,7 @@ export function getToken(): string {
     MatRadioModule,
     MatGridListModule,
     MatDialogModule,
+    MatSidenavModule
   ],
   entryComponents : [ProductoptionsdialogComponent],
   providers: [ValidateService, JwtModule, AuthService, AuthGuard, ProductService, ImageService],
